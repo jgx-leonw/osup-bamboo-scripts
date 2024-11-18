@@ -7,7 +7,7 @@ if [ -z "$PROTOCOL_SHUFFLE_VERSION" ]; then
 fi
 
 # Define the network location and destination directory
-PROTOCOL_SHUFFLE_LOCATION="\\\\artstore.office.jagex.com\\oldscape-artifacts\\clientprotshuffle\\$PROTOCOL_SHUFFLE_VERSION"
+PROTOCOL_SHUFFLE_DIR="\\\\artstore.office.jagex.com\\oldscape-artifacts\\clientprotshuffle\\$PROTOCOL_SHUFFLE_VERSION"
 DESTINATION_DIR="${bamboo.build.working.directory}/gameworld/protocolShuffle"
 
 # Create the destination directory if it doesn't exist
@@ -21,7 +21,7 @@ if ! command -v smbclient &> /dev/null; then
 fi
 
 # Use smbclient to download the files from the network location
-smbclient "$PROTOCOL_SHUFFLE_LOCATION" -c "prompt OFF; recurse ON; mget *" -U username%password -D "$DESTINATION_DIR"
+smbclient "$PROTOCOL_SHUFFLE_DIR" -c "prompt OFF; recurse ON; mget *" -U username%password -D "$DESTINATION_DIR"
 
 # Check if the download was successful
 if [ $? -eq 0 ]; then

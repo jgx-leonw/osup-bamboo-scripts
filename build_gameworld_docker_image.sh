@@ -13,6 +13,7 @@ echo " git hash for the gameoworld folder : $GIT_HASH"
 REPO_WIDE_GIT_HASH=$(latest_commit_at_path ..)  # get latest commit across repo
 GIT_BRANCH=${bamboo.planRepository.branch}
 OUTPUT_DIR="${bamboo.build.working.directory}/output"
+PROTOCOL_SHUFFLE_DIR="${bamboo.build.working.directory}/gameworld/protocolShuffle"
 BUILD_DIR="${bamboo.build.working.directory}/gameworld/gitignored"
 
 # Make sure key value is defined
@@ -21,6 +22,12 @@ if [[ -z "${GIT_HASH}" ]]; then
   exit 1
 elif [[ -z "${GIT_BRANCH}" ]]; then
   echo "GIT_BRANCH is expected to be defined" &>2
+  exit 1
+fi
+
+# Make sure the portocol shuffle directory exists
+if [[ ! -d "${PROTOCOL_SHUFFLE_DIR}" ]]; then
+  echo "Protocol shuffle should exist" &>2
   exit 1
 fi
 

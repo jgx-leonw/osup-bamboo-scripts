@@ -25,11 +25,6 @@ elif [[ -z "${GIT_BRANCH}" ]]; then
   exit 1
 fi
 
-# Make sure the portocol shuffle directory exists
-if [[ ! -d "${PROTOCOL_SHUFFLE_DIR}" ]]; then
-  echo "Protocol shuffle should exist" &>2
-  exit 1
-fi
 
 # Create the gitignored folder if not exist
 mkdir -p "$BUILD_DIR"
